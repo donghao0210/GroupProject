@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?php
+    session_start();        // starting session
+?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,6 +15,27 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="style/login_register.css">
+    <script>
+        function loginFunction() {
+            var errorMsg = document.getElementById("errorMsg")
+            var email = document.getElementById("email").value
+            var password = document.getElementById("password").value
+
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    errorMsg.innerHTML = this.response; 
+                }
+            }
+
+            var postData = `email=${email}&password=${password}`;
+
+            xmlhttp.open("POST", "../controllers/loginController.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send(postData);
+        }
+    </script>
 </head>
 <body>
 
@@ -41,9 +66,13 @@
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" onClick="loginFunction()"/>
                             </div>
                         </form>
+                        <p id="errorMsg"></p>
+                        <?php 
+                            echo "<a href= 'logout.php'>Logout</a>"; 
+                        ?>
                         <!-- <div class="social-login">
                             <span class="social-label">Or login with</span>
                             <ul class="socials">

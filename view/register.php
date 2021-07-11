@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,28 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="style/login_register.css">
+    <script>
+        function registerFunction() {
+            var errorMsg = document.getElementById("errorMsg")
+            var name = document.getElementById("name").value
+            var email = document.getElementById("email").value
+            var password = document.getElementById("password").value
+
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    errorMsg.innerHTML = this.response; 
+                }
+            }
+
+            var postData = `&name=${name}&email=${email}&password=${password}`;
+
+            xmlhttp.open("POST", "../controllers/registerController.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send(postData);
+        }
+    </script>
 </head>
 <body>
 
@@ -42,7 +65,8 @@
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            <!-- <input type="button" name="register" id="register" value="register" onClick="registerFunction()"/> -->
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" onClick="registerFunction()"/>
                             </div>
                         </form>
                     </div>
@@ -50,6 +74,8 @@
                         <figure><img src="style/images/signup-image.jpg" alt="sing up image"></figure>
                         <a href="#" class="signup-image-link">I am already member</a>
                     </div>
+                    
+                 <p id="errorMsg"></p>
                 </div>
             </div>
         </section>   
