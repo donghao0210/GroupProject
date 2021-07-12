@@ -54,18 +54,21 @@
           }
           else {
               $errorMsg = "Login Failed. Invalid Email/Password.";
-              echo $errorMsg;
+              // echo $errorMsg;
           }
       }
       else {
           $errorMsg = "Login Failed. Invalid Email/Password.";
-          echo $errorMsg;
+          // echo $errorMsg;
       }
     }
     else {
         $errorMsg = $conn->error;
-        echo $errorMsg;
+        // echo $errorMsg;
     }
+    echo '<script>alert("Added To Cart")</script>';
+    echo "<div class='text-danger'>".$errorMsg."</div>";
+
 
     $stmt->close();     // close statement
     $conn->close();     // close database connection

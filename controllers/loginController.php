@@ -20,6 +20,7 @@
         userLogin($email, $password);
 
         if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+            echo '<script>alert("logined.'.$_SESSION['email'].'\n'.$_SESSION['password'].'")</script>';
             echo "Email :: ".$_SESSION["email"]."<br />";
             echo "Name :: ".$_SESSION["name"]."<br />";
         }

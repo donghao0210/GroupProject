@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,28 +47,29 @@
                 <div class="signin-content">
                     <div class="signin-image">
                         <figure><img src="style/images/signin-image.jpg" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link">Create an account</a>
+                        <a href="./register.php" class="signup-image-link">Create an account</a>
                     </div>
 
                     <div class="signin-form">
                         <h2 class="form-title">Log In</h2>
                         <form method="POST" class="register-form" id="login-form">
                             <div class="form-group">
-                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                                <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="email" id="email" placeholder="Your email"/>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                                <input type="password" name="password" id="password" placeholder="Password"/>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" onClick="loginFunction()"/>
+                                <input type="submit" name="login" id="login" class="form-submit" value="Sign in" onclick="loginFunction()"/>
                             </div>
                         </form>
+                        <?php 
+                        // if(isset($_SESSION['logined'])){
+                            echo '<script>alert("'.$_POST['email'].'\n'.$_POST['password'].'")</script>';
+                        // }
+                        ?>
                         <p id="errorMsg"></p>
                         <?php 
                             echo "<a href= 'logout.php'>Logout</a>"; 
