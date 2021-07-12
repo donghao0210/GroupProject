@@ -1,8 +1,6 @@
 <?php
     require_once 'db.php';
 
-    print_r($_POST);
-
     if(isset($_POST)) {
         if(!isset($_POST["name"]) || !isset($_POST["email"]) || !isset($_POST["password"])) {     // if $_POST["email"] or $_POST["password"] is not existed
             $errorMsg = "Invalid Form Submission";
