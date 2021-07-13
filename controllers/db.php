@@ -49,15 +49,15 @@
               $_SESSION["email"] = $email;
           }
           else {
-            echo "Login Failed. Invalid Email/Password.";
+            $errorMsg = "Login Failed. Invalid Email/Password.";
           }
       }
       else {
-        echo "Login Failed. Invalid Email/Password.";
+        $errorMsg = "Login Failed. Invalid Email/Password.";
       }
     }
     else {
-      echo $conn->error;
+      $errorMsg = $conn->error;
     }
 
     $stmt->close();     // close statement
