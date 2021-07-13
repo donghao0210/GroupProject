@@ -59,10 +59,12 @@
       }
     }
     else {
-      echo $conn->error;
+      $errorMsg = $conn->error;
     }
 
     $stmt->close();     // close statement
     $conn->close();     // close database connection
+
+    return $errorMsg;
   }
 ?>

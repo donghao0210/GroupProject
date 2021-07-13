@@ -4,6 +4,8 @@
 <head>
 <?php
     session_start();        // starting session
+    $errorMsg = "";
+    require_once '../controllers/loginController.php';
 ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,27 +20,6 @@
     <link rel="stylesheet" href="style/login_register.css">
     <!-- icon -->
     <link rel="icon" href="./style/images/GPTalk.png">
-    <script>
-        function loginFunction() {
-            var errorMsg = document.getElementById("errorMsg")
-            var email = document.getElementById("email").value
-            var password = document.getElementById("password").value
-
-            var xmlhttp = new XMLHttpRequest();
-
-            xmlhttp.onreadystatechange = function() {
-                if(this.readyState == 4 && this.status == 200) {
-                    errorMsg.innerHTML = this.response; 
-                }
-            }
-
-            var postData = `email=${email}&password=${password}`;
-
-            xmlhttp.open("POST", "../controllers/loginController.php", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send(postData);
-        }
-    </script>
 </head>
 <body>
 
@@ -58,19 +39,29 @@
                         <form method="POST" class="register-form" id="login-form">
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="email" id="email" placeholder="Your email"/>
+                                <input type="email" name="email" id="email" placeholder="Your email" required/>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="password" id="password" placeholder="Password"/>
+                                <input type="password" name="password" id="password" placeholder="Password" required/>
                             </div>
+                            <p id="errorMsg">
+                                <?php
+                                    if(!empty($errorMsg)) {
+                                        echo $errorMsg;
+                                    }
+                                ?>
+                            </p>
                             <div class="form-group form-button">
-                                <input type="button" name="login" id="login" class="form-submit" value="Sign in" onClick="loginFunction()"/>
+                                <input type="submit" name="login" id="login" class="form-submit" value="Sign in"/>
                             </div>
                         </form>
                         <p id="errorMsg" class='text-danger'></p>
                         <?php 
-                            echo "<a href= 'logout.php'>Logout</a>";
+                        
+                            if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
+                                echo "<a href= 'logout.php'>Logout</a>";
+                            }
                         ?>
                     </div>
                 </div>
