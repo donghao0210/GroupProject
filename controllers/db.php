@@ -22,10 +22,11 @@
     $stmt->bind_param("ssss", $email, $name, $password, $datetime);
 
     if($stmt->execute()) {
-      echo "Registration Successful!";
+      echo "<div class='text-success'>Registration Successful!</div>";
     }
     else {
-      echo  $conn->error;
+      echo "<div class='text-danger'>*Email already registered.</div>";
+      // echo  $conn->error;
     }
 
     $stmt->close();
@@ -49,11 +50,12 @@
               $_SESSION["email"] = $email;
           }
           else {
-            echo "Login Failed. Invalid Email/Password.";
+            echo "*Login Failed. Invalid Email/Password";
+
           }
       }
       else {
-        echo "Login Failed. Invalid Email/Password.";
+        echo "*Login Failed. Invalid Email/Password";
       }
     }
     else {

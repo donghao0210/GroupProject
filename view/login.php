@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style/login_register.css">
     <!-- icon -->
     <link rel="icon" href="./style/images/GPTalk.png">
@@ -67,18 +68,10 @@
                                 <input type="button" name="login" id="login" class="form-submit" value="Sign in" onClick="loginFunction()"/>
                             </div>
                         </form>
-                        <p id="errorMsg"></p>
+                        <p id="errorMsg" class='text-danger'></p>
                         <?php 
                             echo "<a href= 'logout.php'>Logout</a>";
                         ?>
-                        <!-- <div class="social-login">
-                            <span class="social-label">Or login with</span>
-                            <ul class="socials">
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-                            </ul>
-                        </div> -->
                     </div>
                 </div>
             </div>
