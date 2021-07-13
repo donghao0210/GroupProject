@@ -35,6 +35,7 @@
   }
 
   function userLogin($email, $password) {
+    $errorMsg ='';
     $conn = connectDatabase();     // connect to database
     $sql = "SELECT name, email, password FROM user WHERE email = ?";    // sql command to select user information from the database with user input email
 
