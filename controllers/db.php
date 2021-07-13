@@ -50,12 +50,12 @@
               $_SESSION["email"] = $email;
           }
           else {
-            echo "*Login Failed. Invalid Email/Password";
+            $errorMsg = "<div class=text-danger> *Login Failed. Invalid Email/Password</div>";
 
           }
       }
       else {
-        echo "*Login Failed. Invalid Email/Password";
+        $errorMsg = "<div class=text-danger>*Login Failed. Invalid Email/Password</div>";
       }
     }
     else {

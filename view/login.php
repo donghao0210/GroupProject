@@ -58,7 +58,6 @@
                         </form>
                         <p id="errorMsg" class='text-danger'></p>
                         <?php 
-                        
                             if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
                                 echo "<a href= 'logout.php'>Logout</a>";
                             }
