@@ -62,5 +62,7 @@
 
     $stmt->close();     // close statement
     $conn->close();     // close database connection
+
+    return $errorMsg;
   }
 ?>

@@ -44,17 +44,17 @@
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="password" id="password" placeholder="Password" required/>
                             </div>
+                            <p id="errorMsg">
+                                <?php
+                                    if(!empty($errorMsg)) {
+                                        echo $errorMsg;
+                                    }
+                                ?>
+                            </p>
                             <div class="form-group form-button">
                                 <input type="submit" name="login" id="login" class="form-submit" value="Sign in"/>
                             </div>
                         </form>
-                        <p id="errorMsg">
-                            <?php
-                                if(!empty($errorMsg)) {
-                                    echo "Error: ".$errorMsg;
-                                }
-                            ?>
-                        </p>
                         <?php
                             if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
                                 echo "<a href= 'logout.php'>Logout</a>";
