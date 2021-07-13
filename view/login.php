@@ -62,17 +62,12 @@
                                 <input type="password" name="password" id="password" placeholder="Password"/>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="login" id="login" class="form-submit" value="Sign in" onclick="loginFunction()"/>
+                                <input type="button" name="login" id="login" class="form-submit" value="Sign in" onClick="loginFunction()"/>
                             </div>
                         </form>
-                        <?php 
-                        // if(isset($_SESSION['logined'])){
-                            echo '<script>alert("'.$_POST['email'].'\n'.$_POST['password'].'")</script>';
-                        // }
-                        ?>
                         <p id="errorMsg"></p>
                         <?php 
-                            echo "<a href= 'logout.php'>Logout</a>"; 
+                            echo "<a href= 'logout.php'>Logout</a>";
                         ?>
                         <!-- <div class="social-login">
                             <span class="social-label">Or login with</span>

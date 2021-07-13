@@ -15,7 +15,6 @@
   }
 
   function userRegister($email, $name, $password, $datetime) {
-    $errorMsg = "";
     $conn = connectDatabase();     // connect to database
     $sql = "INSERT INTO `user` (email, `name`, `password`, created_at) VALUES (?, ?, ?, ?);";
 
@@ -23,12 +22,10 @@
     $stmt->bind_param("ssss", $email, $name, $password, $datetime);
 
     if($stmt->execute()) {
-      $successMsg = "Registration Successful!";
-      echo $errorMsg;
+      echo "Registration Successful!";
     }
     else {
-      $errorMsg = $conn->error;
-      echo $errorMsg;
+      echo  $conn->error;
     }
 
     $stmt->close();
@@ -37,7 +34,6 @@
   }
 
   function userLogin($email, $password) {
-    $errorMsg = "";
     $conn = connectDatabase();     // connect to database
     $sql = "SELECT name, email, password FROM user WHERE email = ?";    // sql command to select user information from the database with user input email
 
@@ -53,26 +49,18 @@
               $_SESSION["email"] = $email;
           }
           else {
-              $errorMsg = "Login Failed. Invalid Email/Password.";
-              // echo $errorMsg;
+            echo "Login Failed. Invalid Email/Password.";
           }
       }
       else {
-          $errorMsg = "Login Failed. Invalid Email/Password.";
-          // echo $errorMsg;
+        echo "Login Failed. Invalid Email/Password.";
       }
     }
     else {
-        $errorMsg = $conn->error;
-        // echo $errorMsg;
+      echo $conn->error;
     }
-    echo '<script>alert("Added To Cart")</script>';
-    echo "<div class='text-danger'>".$errorMsg."</div>";
-
 
     $stmt->close();     // close statement
     $conn->close();     // close database connection
-
-    return $errorMsg;
   }
 ?>
