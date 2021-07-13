@@ -1,15 +1,26 @@
-<?php
-    session_start();        // starting session
-?>
 
-<!DOCTYPE HTML>
-<html lang = "en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset = "UTF-8">
-	<title> GP Talk | Register </title>
-	<link rel = "icon" type = "image.png" href = "" />
-	<link href = "style/-register.css" rel = "stylesheet" type = "text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register || GP Talk</title>
 
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="style/login_register.css">
+<<<<<<< HEAD
+    
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+=======
+
+    <!-- icon -->
+    <link rel="icon" href="./style/images/GPTalk.png">
+>>>>>>> 8d0af5bb48859cf3861aeb53e053bc6ff5094797
     <script>
         function registerFunction() {
             var errorMsg = document.getElementById("errorMsg")
@@ -33,19 +44,40 @@
         }
     </script>
 </head>
-
 <body>
-    <div class = "center">
-        <div class = "form">
-            <form method="POST">
-            <input type="text" name="name" id="name" placeholder="Name" required/><br />
-            <input type="text" name="email" id="email" placeholder="Email" required/><br />
-            <input type="password" name="password" id="password" placeholder="Password" required/><br />
-            <input type="button" name="register" id="register" value="register" onClick="registerFunction()"/>
-            </form>
-        </div>
 
-        <p id="errorMsg"></p>
+    <div class="main">
+    <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Register</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" placeholder="Your Name" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="password" placeholder="Password" required/>
+                            </div>
+                            <p id="errorMsg"></p>
+                            <div class="form-group form-button">
+                                <input type="button" name="signup" id="signup" class="form-submit" value="Register" onClick="registerFunction()"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="style/images/signup-image.jpg" alt="sing up image"></figure>
+                        <a href="./login.php" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </body>
 </html>
