@@ -12,9 +12,15 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="style/login_register.css">
+<<<<<<< HEAD
     
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script>
+=======
+
+    <!-- icon -->
+    <link rel="icon" href="./style/images/GPTalk.png">
+>>>>>>> 8d0af5bb48859cf3861aeb53e053bc6ff5094797
     <script>
         function registerFunction() {
             var errorMsg = document.getElementById("errorMsg")
