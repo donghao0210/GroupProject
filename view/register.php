@@ -12,6 +12,9 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="style/login_register.css">
+
+    <!-- icon -->
+    <link rel="icon" href="./style/images/GPTalk.png">
     <script>
         function registerFunction() {
             var errorMsg = document.getElementById("errorMsg")
