@@ -95,9 +95,7 @@
           if(isset($_POST['post_content']) && isset($_POST['content'])){
               $content = $_POST['content'];
               $user_id = $_SESSION["user_id"];
-              date_default_timezone_set("Asia/Singapore");        // set default timezone to "Asia/Singapore"
-              $datetime = date("Y-m-d H:i:s");    // assign the current datetime into $datetime
-              addPost($user_id, $content, $datetime);
+              addPost($user_id, $content);
           }
         }
         else if(!isset($_SESSION['loggedin'])){

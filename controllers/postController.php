@@ -1,15 +1,15 @@
 <?php
     require_once 'db.php';
 
-    function addPost($user_id, $content, $datetime){
+    function addPost($user_id, $content){
         $conn = connectDatabase();     // connect to database
         $errorMsg = "";
         //connect db
-        $sql = "INSERT INTO post (`created_by`, `content`, created_at) VALUES (?, ?, ?);";
+        $sql = "INSERT INTO post (`created_by`, `content`) VALUES (?, ?);";
         //prepare db
         $stmt = $conn->prepare($sql);
         //assign my data into 1 integer 1 strings
-        $stmt->bind_param("iss", $user_id, $content, $datetime);
+        $stmt->bind_param("iss", $user_id, $content);
         if($stmt->execute()) {
             echo '<script>alert("Posted!")</script>';
         }
