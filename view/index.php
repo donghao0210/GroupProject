@@ -92,10 +92,12 @@
 
       <?php
         if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-          if(isset($_POST['post_content']) && isset($_POST['content'])){
+          if(isset($_POST['post_content']) && (isset($_POST['content']) && $_POST['content'] !="")){
               $content = $_POST['content'];
               $user_id = $_SESSION["user_id"];
               addPost($user_id, $content);
+          }else{
+            echo '<script>alert("Cannot Post Emtpy thoughs :(")</script>';
           }
         }
         else if(!isset($_SESSION['loggedin'])){
