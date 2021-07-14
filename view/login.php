@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style/login_register.css">
     <!-- icon -->
     <link rel="icon" href="./style/images/GPTalk.png">
@@ -75,7 +76,8 @@
                                 <input type="submit" name="login" id="login" class="form-submit" value="Sign in"/>
                             </div>
                         </form>
-                        <?php
+                        <p id="errorMsg" class='text-danger'></p>
+                        <?php 
                             if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
                                 echo "<a href= 'logout.php'>Logout</a>";
                             }
