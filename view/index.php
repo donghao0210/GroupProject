@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
     session_start();        // starting session
-    ?>
+    require_once '../controllers/postController.php';
+    require_once '../controllers/commentController.php';
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,12 +17,6 @@
     />
     <link rel="icon" href="./style/images/GPTalk.png">
     <link rel="stylesheet" href="./style/style.css" />
-
-    <?php
-      require_once '../controllers/postController.php';
-      require_once '../controllers/commentController.php';
-
-    ?>
     <script>
     </script>
   </head>
@@ -93,40 +89,41 @@
            
             </div>
           </form>
-                    <?php
-                    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-                      if(isset($_POST['post_content']) && isset($_POST['content'])){
-                          $content = $_POST['content'];
-                          $user_id = $_SESSION["user_id"];
-                          addPost($user_id, $content);
-                      }
-                    }else if(!isset($_SESSION['loggedin'])){
-                      if(isset($_POST['post_content'])){
-                       echo '<script language="javascript">window.location.href ="'.'../view/login.php'.'"</script>';
-                      }
-                    }
+            <?php
+              if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                if(isset($_POST['post_content']) && isset($_POST['content'])){
+                    $content = $_POST['content'];
+                    $user_id = $_SESSION["user_id"];
+                    addPost($user_id, $content);
+                }
+              }else if(!isset($_SESSION['loggedin'])){
+                if(isset($_POST['post_content'])){
+                  echo '<script language="javascript">window.location.href ="'.'../view/login.php'.'"</script>';
+                }
+              }
 
-                    //Delete Comment
-                    // if(isset($_POST['delete_comment'])){
-                    //   $post_id = $_POST['post_id'];
-                    //   $creator_id = $_POST['creator_id'];
-                    //   removePost($post_id, $creator_id);
-                    // }
+              //Delete Comment
+              // if(isset($_POST['delete_comment'])){
+              //   $post_id = $_POST['post_id'];
+              //   $creator_id = $_POST['creator_id'];
+              //   removePost($post_id, $creator_id);
+              // }
 
-                    //delete post
-                    if(isset($_POST['delete_post'])){
-                      $post_id = $_POST['post_id'];
-                      $creator_id = $_POST['creator_id'];
-                      removePost($post_id, $creator_id);
-                    }
+              //delete post
+              if(isset($_POST['delete_post'])){
+                $post_id = $_POST['post_id'];
+                $creator_id = $_POST['creator_id'];
+                removePost($post_id, $creator_id);
+              }
 
-                    //showPost
-                    showPost();
+              //showPost
+              showPost();
 
-                    //show comment
-                    showComment();
-                    ?>
-
+              //show comment
+              $comment = getComment();
+              // print_r($comment);
+              // showComment($post_id);
+            ?>
         </div>
       </div>
     </div>
