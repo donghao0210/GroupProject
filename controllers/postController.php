@@ -42,14 +42,12 @@ function removePost($post_id, $user_id){
     
     $stmt->close();
     $conn->close();
-    
 
 }
 
 function showPost(){
     $errorMsg = "";
     $conn = connectDatabase();// connect to database
-    $sql ="SELECT post_id, created_by, content, created_at FROM post ORDER BY created_at DESC;";
     $sql ="SELECT post.post_id, post.created_by, post.content, post.created_at 
         , user.name
         FROM (post
@@ -87,21 +85,35 @@ function showPost(){
                       </p>
                     </div><br />"
                     ;
+                    showComment($post_id);
+                    
                     //if user loggedin and the post is created by him/her then show him/her delete button
                     if(isset($_SESSION['user_id']) && isset($_SESSION['loggedin'])){
                         if($created_by == $_SESSION['user_id']){
                             echo "<input type=".'submit'." class=".'post_button'." name=".'delete_post'." id=".'delete_post'." value='Delete Post'>
-                            </div></form>";
-                        }else{
-                            echo "</div></form>";
+                            ";
                         }
+                        echo " <input type=".'text'." name=".'comment_cont'." id=".'comment_cont'." placeholder=".'Comment'." />    
+                        <input type=".'submit'." class=".'post_button'." name=".'comment'." id=".'comment'." value='Comment'>
+                        </div></form>";
+                        //call add comment function
+                        if(isset($_POST['comment']) && isset($_POST['comment_cont'])){
+                            $user_id = $_SESSION["user_id"];
+                            $post_id = $_POST['post_id'];
+                            $comment = $_POST['comment_cont'];
+                            addComment($user_id, $post_id, $comment);
+                            unset($_POST['comment']);
+                        }
+                        
                     }else{
                         echo "</div></form>";
                     }
-                   
+                                        
                 }
             }
             
-        }}
+        }
+    
+    }
 
 ?>

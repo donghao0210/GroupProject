@@ -18,6 +18,8 @@
 
     <?php
       require_once '../controllers/postController.php';
+      require_once '../controllers/commentController.php';
+
     ?>
     <script>
     </script>
@@ -104,6 +106,13 @@
                       }
                     }
 
+                    //Delete Comment
+                    // if(isset($_POST['delete_comment'])){
+                    //   $post_id = $_POST['post_id'];
+                    //   $creator_id = $_POST['creator_id'];
+                    //   removePost($post_id, $creator_id);
+                    // }
+
                     //delete post
                     if(isset($_POST['delete_post'])){
                       $post_id = $_POST['post_id'];
@@ -113,6 +122,9 @@
 
                     //showPost
                     showPost();
+
+                    //show comment
+                    showComment();
                     ?>
 
         </div>
