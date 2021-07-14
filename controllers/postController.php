@@ -9,7 +9,7 @@
         //prepare db
         $stmt = $conn->prepare($sql);
         //assign my data into 1 integer 1 strings
-        $stmt->bind_param("iss", $user_id, $content);
+        $stmt->bind_param("is", $user_id, $content);
         if($stmt->execute()) {
             echo '<script>alert("Posted!")</script>';
         }
