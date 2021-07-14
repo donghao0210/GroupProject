@@ -23,6 +23,8 @@
 
     if($stmt->execute()) {
       echo "<div class='text-success'>Registration Successful!</div>";
+      echo "redirecting you to home page...";
+      echo "<meta http-equiv="."refresh"." content="."2.03;index.php"." /> "; 
     }
     else {
       echo "<div class='text-danger'>*Email already registered.</div>";
@@ -37,18 +39,21 @@
   function userLogin($email, $password) {
     $errorMsg ='';
     $conn = connectDatabase();     // connect to database
-    $sql = "SELECT name, email, password FROM user WHERE email = ?";    // sql command to select user information from the database with user input email
+    $sql = "SELECT id, name, email, password FROM user WHERE email = ?";    // sql command to select user information from the database with user input email
 
     $stmt = $conn->prepare($sql);   // prepare sql query statement
     $stmt->bind_param("s", $email); // bind the user input email into the sql command and assign into $stmt
 
     if($stmt->execute()) {      // if successfully execute $stmt
-      $stmt->bind_result($name, $email, $pass);   // bind the result into the variables
+      $stmt->bind_result($id, $name, $email, $pass);   // bind the result into the variables
       if($stmt->fetch()) {
           if(strcmp($password, $pass) == 0) {     // if user input password is same as the password retrived from the database
               $_SESSION["loggedin"] = true;       // assign the variables into $_SESSION
+              $_SESSION["user_id"] = $id;
               $_SESSION["name"] = $name;
               $_SESSION["email"] = $email;
+              echo '<script language="javascript">window.location.href ="'.'../view/index.php'.'"</script>';
+
           }
           else {
             $errorMsg = "<div class=text-danger> *Login Failed. Invalid Email/Password</div>";

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+  session_start();        // starting session
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,7 +15,14 @@
     />
     <link rel="icon" href="./style/images/GPTalk.png">
     <link rel="stylesheet" href="./style/style.css" />
+
+    <?php
+      require_once '../controllers/postController.php';
+    ?>
+    <script>
+    </script>
   </head>
+
   <body>
     <!-- navbar start -->
     <div class="navbar">
@@ -21,237 +31,91 @@
       </div>
 
       <div class="navbar_center">
-
         <a class="active_icon" href="index.php">
           <span> Home <i class="fas fa-home"></i> </span>
         </a>
-
-        <a href="login.php">
-          <span> Sign In <i class="fas fa-sign-in-alt"></i></span>
-        </a>
-
-        <a href="logout.php">
-          <span> Sign Out <i class="fas fa-sign-out-alt"></i></span>
-        </a>
-        
+          <?php
+            //if user is login show login button
+            if(!isset($_SESSION['loggedin'])){
+                echo 
+                "<a href=".'login.php'.">
+                  <span> Sign In <i class=".'fas fa-sign-in-alt'."></i></span>
+                </a>";
+            //if user is login show logout button
+            }else if(isset($_SESSION['loggedin'])){
+              if($_SESSION['loggedin']==true){
+                echo 
+                "<a href=".'logout.php'.">
+                  <span> Sign Out <i class=".'fas fa-sign-out-alt'."></i></span>
+                </a>";
+              }
+            }
+          ?>
       </div>
 
       <div class="navbar_right">
         <div class="navbar_right_profile">
-          <img src="./style/images/profile.png" alt="profile" />
-          <span>Ronald Jeremy</span>
+          <?php 
+            //if user is login show his name
+            if(isset($_SESSION['loggedin'])){
+              echo"
+              <img src=".'./style/images/profile.png'." alt=".'profile'." />
+              <span>".$_SESSION['name']."</span>";
+              }
+          ?>
         </div>
       </div>
     </div>
     <!-- navbar ends -->
-
     <!-- content starts -->
+    <form method="post">
       <div class="media_container">
         <div class="share">
           <div class="share_upSide">
             <img src="./style/images/profile.png" alt="profile" />
-            <input type="text" placeholder="What's on your mind, Ronald Jeremy?" />
+              <?php
+                if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                  $post_btn = 'POST';
+                  $readonly = '';
+                }else{
+                  $post_btn = 'Sign-In to Post';
+                  $readonly = 'disabled';
+                }
+              ?>
+            <input type="text" name="content" placeholder="What's on your mind?<?php if(isset($_SESSION['loggedin'])){echo ', '.$_SESSION['name'];}?>"  <?php echo $readonly;?> />
           </div>
-
           <hr />
-
           <div class="post_divider"><hr /></div>
-            <a href="#" class="post_button">POST</a>
-          </div>
+        <input type="submit" name="post_content" id="post_content" class="post_button" value="<?php echo $post_btn;?>"/>
+      </div>
+    </form>
 
-          <!-- news feed -->
-          <div class="news_feed">
-            <div class="news_feed_title">
-              <img src="./style/images/user.png" alt="user" />
-              <div class="news_feed_title_content">
-                <p>Codersbite Magazine</p>
-                <span>12h . <i class="fas fa-globe-americas"></i></span>
-              </div>
-            </div>
-            <div class="news_feed_description">
-              <p class="news_feed_subtitle">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-              </p>
-              <!-- <img src="./style/images/sunflower.jpg" alt="sunflower" /> -->
-              <div class="news_feed_description_title">
-                <span>YOUTUBE / CODERSBITE</span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nesciunt repudiandae exercitationem mollitia, suscipit labore
-                  rem reiciendis distinctio atque totam facere placeat officia
-                  ea quia? Atque.
-                </p>
-              </div>
-            </div>
+      <?php
+        if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+          if(isset($_POST['post_content']) && isset($_POST['content'])){
+              $content = $_POST['content'];
+              $user_id = $_SESSION["user_id"];
+              date_default_timezone_set("Asia/Singapore");        // set default timezone to "Asia/Singapore"
+              $datetime = date("Y-m-d H:i:s");    // assign the current datetime into $datetime
+              addPost($user_id, $content, $datetime);
+          }
+        }
+        else if(!isset($_SESSION['loggedin'])){
+          if(isset($_POST['post_content'])){
+            echo '<script language="javascript">window.location.href ="'.'../view/login.php'.'"</script>';
+          }
+        }
 
-            <div class="likes_area">
-              <div class="emojis">
-                <img src="./style/images/emoji_like.png" alt="like" />
-                <img src="./style/images/emoji_surprised.png" alt="surprised" />
-                <img src="./style/images/emoji_angry.png" alt="angry" />
-                <span>21450</span>
-              </div>
-              <div class="comment_counts">
-                <span>452 Comments</span>
-                <span>133 Shares</span>
-              </div>
-            </div>
+        //delete post
+        if(isset($_POST['delete_post'])){
+          $post_id = $_POST['post_id'];
+          $creator_id = $_POST['creator_id'];
+          removePost($post_id, $creator_id);
+        }
 
-            <div class="divider"><hr /></div>
-              <div class="likes_buttons">
-                <div class="likes_buttons_links">
-                  <i class="far fa-thumbs-up"></i>
-                  <span>Like</span>
-                </div>
-                <div class="likes_buttons_links">
-                  <i class="far fa-comment-alt"></i>
-                  <span>Comment</span>
-                </div>
-                <div class="likes_buttons_links">
-                  <i class="fas fa-share"></i>
-                  <span>Share</span>
-                </div>
-              </div>
-            </div>
-
-          <div class="news_feed">
-            <div class="news_feed_title">
-              <img src="./style/images/user.png" alt="user" />
-              <div class="news_feed_title_content">
-                <p>Codersbite Magazine</p>
-                <span>12h . <i class="fas fa-globe-americas"></i></span>
-              </div>
-            </div>
-            <div class="news_feed_description">
-              <p class="news_feed_subtitle">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-              </p>
-              <!-- <img src="./style/images/sunflower.jpg" alt="sunflower" /> -->
-            </div>
-
-            <div class="likes_area">
-              <div class="emojis">
-                <img src="./style/images/emoji_like.png" alt="like" />
-                <img src="./style/images/emoji_surprised.png" alt="surprised" />
-                <img src="./style/images/emoji_angry.png" alt="angry" />
-                <span>21450</span>
-              </div>
-              <div class="comment_counts">
-                <span>452 Comments</span>
-                <span>133 Shares</span>
-              </div>
-            </div>
-
-            <div class="divider"><hr /></div>
-            <div class="likes_buttons">
-              <div class="likes_buttons_links">
-                <i class="far fa-thumbs-up"></i>
-                <span>Like</span>
-              </div>
-              <div class="likes_buttons_links">
-                <i class="far fa-comment-alt"></i>
-                <span>Comment</span>
-              </div>
-              <div class="likes_buttons_links">
-                <i class="fas fa-share"></i>
-                <span>Share</span>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="news_feed">
-            <div class="news_feed_title">
-              <img src="./style/images/user.png" alt="user" />
-              <div class="news_feed_title_content">
-                <p>Codersbite Magazine</p>
-                <span>12h . <i class="fas fa-globe-americas"></i></span>
-              </div>
-            </div>
-            <div class="news_feed_description">
-              <p class="news_feed_subtitle">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                esse cum id vero odit tempora dicta. Saepe corporis voluptatibus
-                laboriosam?
-              </p>
-              <!-- <img src="./style/images/sunflower.jpg" alt="sunflower" /> -->
-              <div class="news_feed_description_title">
-                <span>YOUTUBE / CODERSBITE</span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nesciunt repudiandae exercitationem mollitia, suscipit labore
-                  rem reiciendis distinctio atque totam facere placeat officia
-                  ea quia? Atque.
-                </p>
-              </div>
-            </div>
-
-            <div class="likes_area">
-              <div class="emojis">
-                <img src="./style/images/emoji_like.png" alt="like" />
-                <img src="./style/images/emoji_surprised.png" alt="surprised" />
-                <img src="./style/images/emoji_angry.png" alt="angry" />
-                <span>21450</span>
-              </div>
-              <div class="comment_counts">
-                <span>452 Comments</span>
-                <span>133 Shares</span>
-              </div>
-            </div>
-
-            <div class="divider"><hr /></div>
-                <div class="likes_buttons">
-                <div class="likes_buttons_links">
-                    <i class="far fa-thumbs-up"></i>
-                    <span>Like</span>
-                </div>
-                <div class="likes_buttons_links">
-                    <i class="far fa-comment-alt"></i>
-                    <span>Comment</span>
-                </div>
-                <div class="likes_buttons_links">
-                    <i class="fas fa-share"></i>
-                    <span>Share</span>
-                </div>
-                </div>
-            </div>
+        //showPost
+        showPost();
+      ?>
         </div>
       </div>
     </div>

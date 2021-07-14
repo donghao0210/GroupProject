@@ -67,7 +67,7 @@
                             </div>
                             <p id="errorMsg"></p>
                             <div class="form-group form-button">
-                                <input type="button" name="signup" id="signup" class="form-submit" value="Register" onClick="registerFunction()"/>
+                                <input type="button" name="signup" id="signup" class="form-submit" value="Register" onclick="registerFunction()"/>
                             </div>
                         </form>
                     </div>
