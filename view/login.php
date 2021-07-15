@@ -1,12 +1,33 @@
+<?php
+    session_start();        // starting session
+    $msg = "";
+    require_once '../controllers/userController.php';
+    if(isset($_POST["login"])) {
+        if(!isset($_POST["email"]) || !isset($_POST["password"])) {     // if $_POST["email"] or $_POST["password"] is not existed
+            $msg = "Invalid Form Submission";
+            return;
+        }
+
+        $email = $_POST["email"];       // assign user input email into $email
+        $password = $_POST["password"]; // assign user input password into $password
+
+        if($email == "" || $password == "") {      // if $email or $password is empty
+            $msg = "All Field is Mandatory";
+            return;
+        }
+
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $msg = "Invalid email format";
+            return;
+        }
+
+        $msg = userLogin($email, $password);
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php
-    session_start();        // starting session
-    $errorMsg = "";
-    require_once '../controllers/loginController.php';
-?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -24,7 +45,6 @@
 <body>
 
     <div class="main">
-
         <!-- Sign up form -->
         <section class="sign-in">
             <div class="container">
@@ -50,8 +70,8 @@
                             </div>
                             <p id="errorMsg">
                                 <?php
-                                    if(!empty($errorMsg)) {
-                                        echo $errorMsg;
+                                    if(!empty($msg)) {
+                                        echo $msg;
                                     }
                                 ?>
                             </p>
