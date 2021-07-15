@@ -60,6 +60,9 @@
     function userLogout() {
         session_destroy();
         header("Location: login.php");
+        $msg = "Logout Successfully";
+
+        return $msg;
     }
 
 ?>

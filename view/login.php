@@ -2,6 +2,7 @@
     session_start();        // starting session
     $msg = "";
     require_once '../controllers/userController.php';
+
     if(isset($_POST["login"])) {
         if(!isset($_POST["email"]) || !isset($_POST["password"])) {     // if $_POST["email"] or $_POST["password"] is not existed
             $msg = "Invalid Form Submission";
@@ -22,6 +23,10 @@
         }
 
         $msg = userLogin($email, $password);
+    }
+
+    if(isset($_POST["logout"])) {
+        $msg = userLogout();
     }
 ?>
 
@@ -79,7 +84,9 @@
                         <p id="errorMsg" class='text-danger'></p>
                         <?php 
                             if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
-                                echo "<a href= 'logout.php'>Logout</a>";
+                                echo "<form method='POST'>";
+                                echo "<input type='submit' name='logout' id='logout' class='form-submit' value='Logout'/>";
+                                echo "</form>";
                             }
                         ?>
                     </div>
