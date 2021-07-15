@@ -87,7 +87,7 @@
                     //if user loggedin and the post is created by him/her then show him/her delete button
                     if(isset($_SESSION['user_id']) && isset($_SESSION['loggedin'])) {
                         if($created_by == $_SESSION['user_id']) {
-                            echo "<input type=".'submit'." class=".'post_button'." name=".'delete_post'." id=".'delete_post'." value='Delete Post'>
+                            echo "<button type=".'submit'." class=".'post_button'." name=".'delete_post'." id=".'delete_post'." value='Delete Post'> Delete Post</button>
                             </div></form>";
                         }
                         else {
