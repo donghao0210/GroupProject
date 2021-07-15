@@ -88,6 +88,7 @@
           <div class="post_divider"><hr />
             <button type="submit" name="post_content" id="post_content" class="post_button" value="<?php echo $post_btn;?>"><?php echo $post_btn;?></button>
           </div>
+
       </div>
     </form>
 
@@ -122,5 +123,11 @@
         </div>
       </div>
     </div>
+  <footer>
+    <div class="container">
+        <hr>
+        <p class="end">Copyright © 2021 by GP Talk. All rights reserved.</p>
+    </div>
+  </footer>
   </body>
 </html>
