@@ -85,8 +85,9 @@
             <input type="text" name="content" placeholder="What's on your mind?<?php if(isset($_SESSION['loggedin'])){echo ', '.$_SESSION['name'];}?>"  <?php echo $readonly;?> />
           </div>
           <hr />
-          <div class="post_divider"><hr /></div>
-        <input type="submit" name="post_content" id="post_content" class="post_button" value="<?php echo $post_btn;?>"/>
+          <div class="post_divider"><hr />
+            <button type="submit" name="post_content" id="post_content" class="post_button" value="<?php echo $post_btn;?>"><?php echo $post_btn;?></button>
+          </div>
       </div>
     </form>
 
