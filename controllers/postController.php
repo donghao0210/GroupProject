@@ -6,7 +6,9 @@
         $conn = connectDatabase();     // connect to database
         $errorMsg = "";
         //connect db
-        $sql = "INSERT INTO post (`created_by`, `content`) VALUES ( ?, ?);";
+
+        $sql = "INSERT INTO post (`created_by`, `content`) VALUES (?, ?);";
+
         //prepare db
         $stmt = $conn->prepare($sql);
         //assign my data into 1 integer 1 strings
@@ -27,10 +29,12 @@
         $conn = connectDatabase();     // connect to database
         $errorMsg = "";
         //connect db
+
         $sql = "DELETE p.*, c.* FROM post p
         INNER JOIN `comment` c
         WHERE p.post_id AND c.post_id = ? 
         AND p.created_by = ?;";
+
         //prepare db
         $stmt = $conn->prepare($sql);
         //assign my data into 1 integer
@@ -45,13 +49,13 @@
         
         $stmt->close();
         $conn->close();
-
     }
 
     function getPost() {
         $errorMsg = "";
         $output = array();
         $conn = connectDatabase();// connect to database
+
         $sql ="SELECT post.post_id, post.created_by, post.content, post.created_at 
             , user.name
             FROM (post
