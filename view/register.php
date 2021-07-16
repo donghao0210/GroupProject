@@ -1,7 +1,3 @@
-<?php
-    
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,17 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register || GP Talk</title>
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-
     <!-- Main css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/login_register.css">
-
-    
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/register.css">
 
     <!-- icon -->
     <link rel="icon" href="./style/images/GPTalk.png">
@@ -48,42 +36,37 @@
     </script>
 </head>
 <body>
-
-    <div class="main">
-    <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Register</h2>
-                        <form method="POST" class="register-form" id="register-form">
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="password" id="password" placeholder="Password" required/>
-                            </div>
-                            <div class="alreadyMember">
-                                <a href="./login.php" class="signup-image-link">I am already member</a>
-                            </div>
-                            <p id="errorMsg"></p>
-                            <div class="form-group form-button">
-                                <input type="button" name="signup" id="signup" class="form-submit" value="Register" onclick="registerFunction()"/>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="signup-image">
-                        <figure><img src="style/images/signup-image.jpg" alt="sing up image"></figure>
-                        <button class="btn btn2" onclick="window.location.href = 'index.php'"> Back </button>
-                    </div>
+    <!-- Register form -->
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-7">
+                <div class="mb-5">
+                    <h2 class="fw-bolder">Register</h2>
                 </div>
+                <form method="POST" class="register-form" id="register-form">
+                    <div class="mb-3">
+                        <input class="form-control" type="text" name="name" id="name" placeholder="Your Name" required/>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" type="email" name="email" id="email" placeholder="Your Email" required/>
+                    </div>
+                    <div class="mb-4">
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Password" required/>
+                    </div>
+                    <p id="errorMsg" class='text-danger'></p>
+                    <div class="form-group form-button">
+                        <input type="button" name="signup" id="signup" class="btn btn-outline-dark" value="Register" onclick="registerFunction()"/>
+                    </div>
+                    <div class="mt-5">
+                        Already a member?&nbsp
+                    <a href="./login.php" class="link-dark">Login</a>
+                </div>
+                </form>
             </div>
-        </section>
+            <div class="col-md-5">
+                <figure><img src="style/images/signup-image.jpg" alt="sing up image"></figure>
+            </div>
+        </div>
     </div>
 </body>
 </html>
