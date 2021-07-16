@@ -1,8 +1,12 @@
-body {
-    background-color: #f2f2f2;
+.c1{
     padding: 4% 20%;
+}
+
+body{
+    background-color: #f2f2f2;
     font-family: sans-serif;
 }
+
 
 .container {
     background: #ffffff;

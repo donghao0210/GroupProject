@@ -1,6 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
+
   <?php
     session_start();        // starting session
     require_once '../controllers/postController.php';
@@ -21,7 +19,7 @@
     
     <link rel="stylesheet" href="./style/nav_bar.css" />
 
-  </head>
+ 
     
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -71,4 +69,3 @@
         ?>
 </div>
 </nav>
-</html>
