@@ -102,9 +102,8 @@
                     <p class=".'card-text'."><small class=".'text-muted'.">".$created_at."</small></p>
                     <input type=".'hidden'." name=".'creator_id'." id=".'creator_id'." value=".$created_by." >
                     <input type=".'hidden'." name=".'post_id'." id=".'post_id'." value=".$post_id." >
-                
-                
-                <br />";
+                </div>
+                ";
 
                 showComment($post_id);
                 
@@ -115,11 +114,12 @@
                         // </div>";
                         $delBtnClass = "btn bg-warning text-dark";
                         echo "<button type=".'submit'." class=".'btn bg-warning text-dark'." name=".'delete_post'." id=".'delete_post'."> Delete Post</button>
-                        </div></div>";
+                        ";
                     }
                     echo " <input type=".'text'." name=".'comment_cont'." id=".'comment_cont'." placeholder=".'Comment'." />    
                     <input type=".'submit'." class=".'post_button'." name=".'comment'." id=".'comment'." value='Comment'>
-                    </form>";
+                    </form></div>
+                    <br />";
                     //call add comment function
                     if(isset($_POST['comment']) && isset($_POST['comment_cont'])){
                         $user_id = $_SESSION["user_id"];
