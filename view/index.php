@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <?php
-    session_start();        // starting session
-    require_once '../controllers/postController.php';
-    require_once '../controllers/commentController.php';
+    include './nav_bar.php'
 ?>
 <html lang="en">
   <head>
@@ -22,48 +20,7 @@
   </head>
 
   <body>
-    <!-- navbar start -->
-    <div class="navbar">
-      <div class="navbar_left">
-        <img class="navbar_logo" src="./style/images/GPTalk.png" alt="logo" />
-      </div>
 
-      <div class="navbar_center">
-        <a class="active_icon" href="index.php">
-          <span> Home <i class="fas fa-home"></i> </span>
-        </a>
-          <?php
-            //if user is login show login button
-            if(!isset($_SESSION['loggedin'])){
-                echo 
-                "<a href=".'login.php'.">
-                  <span> Sign In <i class=".'fas fa-sign-in-alt'."></i></span>
-                </a>";
-            //if user is login show logout button
-            }else if(isset($_SESSION['loggedin'])){
-              if($_SESSION['loggedin']==true){
-                echo 
-                "<a href=".'logout.php'.">
-                  <span> Sign Out <i class=".'fas fa-sign-out-alt'."></i></span>
-                </a>";
-              }
-            }
-          ?>
-      </div>
-
-      <div class="navbar_right">
-        <div class="navbar_right_profile">
-          <?php 
-            //if user is login show his name
-            if(isset($_SESSION['loggedin'])){
-              echo"
-              <img src=".'./style/images/profile.png'." alt=".'profile'." />
-              <span>".$_SESSION['name']."</span>";
-              }
-          ?>
-        </div>
-      </div>
-    </div>
     <!-- navbar ends -->
     <!-- content starts -->
     <form method="post">
