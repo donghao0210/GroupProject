@@ -9,7 +9,10 @@
         $stmt->bind_param("ssss", $email, $name, $password, $datetime);
 
         if($stmt->execute()) {
-        echo "Registration Successful!";
+        echo "<div class='text-success'>Registration Successful!</div>";
+        echo "redirecting you to login page...";
+        echo "<meta http-equiv="."refresh"." content="."2.03;login.php"." /> "; 
+
         }
         else {
         echo  $conn->error;
@@ -34,13 +37,16 @@
                   $_SESSION["loggedin"] = true;       // assign the variables into $_SESSION
                   $_SESSION["name"] = $name;
                   $_SESSION["email"] = $email;
+                  echo '<script language="javascript">window.location.href ="'.'../view/index.php'.'"</script>';
+
               }
               else {
-                $msg = "Login Failed. Invalid Email/Password.";
+  //           $errorMsg = "<div class=text-danger> *Login Failed. Invalid Email/Password</div>";
+                $msg = "<div class='text-danger'> *Login Failed. Invalid Email/Password.</div>";
               }
           }
           else {
-            $msg = "Login Failed. Invalid Email/Password.";
+            $msg = "<div class='text-danger'> *Login Failed. Invalid Email/Password.</div>";
           }
         }
         else {
@@ -51,7 +57,7 @@
         $conn->close();     // close database connection
 
         if(!isset($msg)) {
-            $msg = "Login Successfully";
+            $msg = "<div class='text-success'> *Login Successfully</div>";
         }
     
         return $msg;
