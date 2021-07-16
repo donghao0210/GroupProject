@@ -56,7 +56,7 @@
                 <div class="signin-content">
                     <div class="signin-image">
                         <figure><img src="style/images/signin-image.jpg" alt="sing up image"></figure>
-                        <a href="./register.php" class="signup-image-link">Create an account</a>
+                        <button class="btn btn1" onclick="window.location.href='index.php'"> Back </button>
                     </div>
 
                     <div class="signin-form">
@@ -69,6 +69,9 @@
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="password" id="password" placeholder="Password" required/>
+                            </div>
+                            <div class="signin-image">
+                                <a href="./register.php" class="signup-image-link">Create an account</a>
                             </div>
                             <p id="errorMsg">
                                 <?php
@@ -88,7 +91,7 @@
                                 echo "<input type='submit' name='logout' id='logout' class='form-submit' value='Logout'/>";
                                 echo "</form>";
                             }
-                        ?>
+                        ?>  
                     </div>
                 </div>
             </div>

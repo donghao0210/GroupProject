@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
-  session_start();        // starting session
+    session_start();        // starting session
+    require_once '../controllers/postController.php';
+    require_once '../controllers/commentController.php';
 ?>
 <html lang="en">
   <head>
@@ -15,10 +17,6 @@
     />
     <link rel="icon" href="./style/images/GPTalk.png">
     <link rel="stylesheet" href="./style/style.css" />
-
-    <?php
-      require_once '../controllers/postController.php';
-    ?>
     <script>
     </script>
   </head>
@@ -85,39 +83,47 @@
             <input type="text" name="content" placeholder="What's on your mind?<?php if(isset($_SESSION['loggedin'])){echo ', '.$_SESSION['name'];}?>"  <?php echo $readonly;?> />
           </div>
           <hr />
-          <div class="post_divider"><hr /></div>
-        <input type="submit" name="post_content" id="post_content" class="post_button" value="<?php echo $post_btn;?>"/>
-      </div>
-    </form>
+            <div class="post_divider"><hr /></div>
 
-      <?php
-        if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-          if(isset($_POST['post_content']) && isset($_POST['content'])){
-            if(empty(trim($_POST['content']))){
-              echo '<script>alert("Cannot Post Emtpy Thoughs :(")</script>';
-            }else{
-              $content = $_POST['content'];
-              $user_id = $_SESSION["user_id"];
-              addPost($user_id, $content);
-            }
-          }
-        }
-        else if(!isset($_SESSION['loggedin'])){
-          if(isset($_POST['post_content'])){
-            echo '<script language="javascript">window.location.href ="'.'../view/login.php'.'"</script>';
-          }
-        }
+              <input type="submit" name="post_content" id="post_content" class="post_button" value="<?php echo $post_btn;?>"/>
+           
+            </div>
+          </form>
+            <?php
+              if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                if(isset($_POST['post_content']) && isset($_POST['content'])){
+                    $content = $_POST['content'];
+                    $user_id = $_SESSION["user_id"];
+                    addPost($user_id, $content);
+                }
+              }else if(!isset($_SESSION['loggedin'])){
+                if(isset($_POST['post_content'])){
+                  echo '<script language="javascript">window.location.href ="'.'../view/login.php'.'"</script>';
+                }
+              }
 
-        //delete post
-        if(isset($_POST['delete_post'])){
-          $post_id = $_POST['post_id'];
-          $creator_id = $_POST['creator_id'];
-          removePost($post_id, $creator_id);
-        }
+              //Delete Comment
+              // if(isset($_POST['delete_comment'])){
+              //   $post_id = $_POST['post_id'];
+              //   $creator_id = $_POST['creator_id'];
+              //   removePost($post_id, $creator_id);
+              // }
 
-        //showPost
-        showPost();
-      ?>
+              //delete post
+              if(isset($_POST['delete_post'])){
+                $post_id = $_POST['post_id'];
+                $creator_id = $_POST['creator_id'];
+                removePost($post_id, $creator_id);
+              }
+
+              //showPost
+              showPost();
+
+              //show comment
+              $comment = getComment();
+              // print_r($comment);
+              // showComment($post_id);
+            ?>
         </div>
       </div>
     </div>

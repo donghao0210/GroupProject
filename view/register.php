@@ -68,6 +68,9 @@
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="password" id="password" placeholder="Password" required/>
                             </div>
+                            <div class="alreadyMember">
+                                <a href="./login.php" class="signup-image-link">I am already member</a>
+                            </div>
                             <p id="errorMsg"></p>
                             <div class="form-group form-button">
                                 <input type="button" name="signup" id="signup" class="form-submit" value="Register" onclick="registerFunction()"/>
@@ -76,7 +79,7 @@
                     </div>
                     <div class="signup-image">
                         <figure><img src="style/images/signup-image.jpg" alt="sing up image"></figure>
-                        <a href="./login.php" class="signup-image-link">I am already member</a>
+                        <button class="btn btn2" onclick="window.location.href = 'index.php'"> Back </button>
                     </div>
                 </div>
             </div>

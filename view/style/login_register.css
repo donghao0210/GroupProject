@@ -181,28 +181,29 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
     margin: 0;
     padding: 0;
     font-weight: bold;
-    color: #222;
+    color: #E5E1E1;
     font-family: Poppins;
     font-size: 36px; }
   
   .main {
-    background: #f8f8f8;
-    padding: 150px 0; }
+    background: #3a3b3c;
+    padding: 150px 0; 
+  }
   
   .clear {
     clear: both; }
   
   body {
     font-size: 13px;
-    line-height: 1.8;
+    line-height: 2;
     color: #222;
-    background: #f8f8f8;
+    background: #3a3b3c;
     font-weight: 400;
     font-family: Poppins; }
   
   .container {
     width: 900px;
-    background: #fff;
+    background: #222;
     margin: 0 auto;
     box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
     -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
@@ -285,22 +286,20 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
     -o-border-radius: 5px;
     -ms-border-radius: 5px;
     margin-top: 25px;
-    cursor: pointer; }
+    cursor: pointer; 
+  }
+    
     .form-submit:hover {
-      background: #4292dc; }
+      background: #7cb6ec; }
   
   #signin {
     margin-top: 16px; }
   
   .signup-image-link {
     font-size: 14px;
-    color: #222;
+    color: #E5E1E1;
     display: block;
-    text-align: center; }
-  
-  .term-service {
-    font-size: 13px;
-    color: #222; }
+    text-align: right; }
   
   .signup-form {
     margin-left: 75px;
@@ -589,5 +588,51 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
       margin-right: 0px;
       margin-bottom: 10px; } }
   
-  /*# sourceMappingURL=style.css.map */
+      .middle{
+        position: absolute;
+        top: 110%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+      }
+    .btn{
+        background: none;
+        border: 2px solid rgb(152, 87, 255);
+        font-family: "montserrat",sans-serif;
+        text-transform: uppercase;
+        padding: 8px 15px;
+        min-width: 15px;
+        margin: 8px;
+        cursor: pointer;
+        transition: color 0.4s linear;
+        position: relative;
+      }
+      .btn:hover{
+        color: rgb(255, 17, 204);
+      }
+      .btn::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #a0ff07;
+        z-index: -1;
+        transition: transform 0.5s;
+        transform-origin: 0 0;
+        transition-timing-function: cubic-bezier(0.5,1.6,0.4,0.7);
+      }
+      .btn1::before{
+        transform: scaleX(0);
+      }
+      .btn2::before{
+        transform: scaleY(0);
+      }
+      .btn1:hover::before{
+        transform: scaleX(1);
+      }
+      .btn2:hover::before{
+        transform: scaleY(1);
+      }
   
