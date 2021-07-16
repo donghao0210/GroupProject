@@ -94,34 +94,32 @@
                 $created_at = $p['created_at'];
                 //echo post
                 echo "
-                <form method='post'>
-                <div class=".'news_feed'.">
-                <div class=".'news_feed_title'.">
-                <div class=".'news_feed_title_content'.">
-                    <p>".$user_name."</p>
+                <form method='post' class=".' px-5 pt-3'.">
+                <div class=".'card mb-3'.">
+                <div class=".'card-body'.">
+                    <h5 class=".'card-title'.">".$user_name."</h5>
+                    <p class=".'card-text'.">".$content."</p>
+                    <p class=".'card-text'."><small class=".'text-muted'.">".$created_at."</small></p>
                     <input type=".'hidden'." name=".'creator_id'." id=".'creator_id'." value=".$created_by." >
                     <input type=".'hidden'." name=".'post_id'." id=".'post_id'." value=".$post_id." >
-                    <span>".$created_at." . <i class=".'fas fa-globe-americas'."></i></span>
-                </div>
-                </div>
-                <div class=".'news_feed_description'.">
-                <p class=".'news_feed_subtitle'.">
-                ".$content."
-                </p>
-                </div><br />"
-                ;
+                
+                
+                <br />";
 
                 showComment($post_id);
                 
                 //if user loggedin and the post is created by him/her then show him/her delete button
                 if(isset($_SESSION['user_id']) && isset($_SESSION['loggedin'])){
                     if($created_by == $_SESSION['user_id']){
-                        echo "<input type=".'submit'." class=".'post_button'." name=".'delete_post'." id=".'delete_post'." value='Delete Post'>
-                        ";
+                        // $deleteBtn = "<button type=".'submit'." class=".'btn'." name=".'delete_post'." id=".'delete_post'."> Delete Post</button>
+                        // </div>";
+                        $delBtnClass = "btn bg-warning text-dark";
+                        echo "<button type=".'submit'." class=".'btn bg-warning text-dark'." name=".'delete_post'." id=".'delete_post'."> Delete Post</button>
+                        </div></div>";
                     }
                     echo " <input type=".'text'." name=".'comment_cont'." id=".'comment_cont'." placeholder=".'Comment'." />    
                     <input type=".'submit'." class=".'post_button'." name=".'comment'." id=".'comment'." value='Comment'>
-                    </div></form>";
+                    </form>";
                     //call add comment function
                     if(isset($_POST['comment']) && isset($_POST['comment_cont'])){
                         $user_id = $_SESSION["user_id"];
@@ -132,7 +130,7 @@
                     }
                     
                 }else{
-                    echo "</div></form>";
+                    echo "</form>";
                 }
                                     
             }
