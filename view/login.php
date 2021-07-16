@@ -40,68 +40,59 @@ include './nav_bar.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Log In || GPTalk</title>
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-
     <!-- Main css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/login_register.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/login.css">
     <!-- icon -->
     <link rel="icon" href="./style/images/GPTalk.png">
 </head>
 <body>
-
-    <div class="main">
-        <!-- Sign up form -->
-        <section class="sign-in">
-            <div class="container">
-                <div class="signin-content">
-                    <div class="signin-image">
-                        <figure><img src="style/images/signin-image.jpg" alt="sing up image"></figure>
-                        <button class="btn btn1" onclick="window.location.href='index.php'"> Back </button>
-                    </div>
-
-                    <div class="signin-form">
-                        <h2 class="form-title">Log In</h2>
-                        <form method="POST" class="register-form" id="login-form">
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your email" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="password" id="password" placeholder="Password" required/>
-                            </div>
-                            <div class="signin-image">
-                                <a href="./register.php" class="signup-image-link">Create an account</a>
-                            </div>
-                            <p id="errorMsg">
-                                <?php
-                                    if(!empty($msg)) {
-                                        echo $msg;
-                                    }
-                                ?>
-                            </p>
-                            <div class="form-group form-button">
-                                <input type="submit" name="login" id="login" class="form-submit" value="Sign in"/>
-                            </div>
-                        </form>
-                        <p id="errorMsg" class='text-danger'></p>
-                        <?php 
-                            if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
-                                echo "<form method='POST'>";
-                                echo "<input type='submit' name='logout' id='logout' class='form-submit' value='Logout'/>";
-                                echo "</form>";
-                            }
-                        ?>  
-                    </div>
-                </div>
+    <!-- Login form -->
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="style/images/signin-image.jpg" alt="sing up image">
             </div>
-        </section>
-    </div>
 
-    <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/main.js"></script>
+            <div class="col-md-8">
+                <div class="mb-5">
+                    <h2 class="fw-bolder">Log In</h2>
+                </div>
+
+                <form method="POST" class="login-form" id="login-form">
+                    <div class="mb-3">
+                        <input class="form-control" type="email" name="email" id="email" placeholder="Your email" required/>
+                    </div>
+                    <div class="mb-4">
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Password" required/>
+                    </div>
+
+                    <p id="errorMsg">
+                        <?php
+                            if(!empty($msg)) {
+                                echo $msg;
+                            }
+                        ?>
+                    </p>
+                    <div class="form-group form-button">
+                        <input type="submit" name="login" id="login" class="btn btn-outline-dark" value="Sign in"/>
+                    </div>
+                </form>
+                
+                <div class="mt-5">
+                    Do not have an account?&nbsp
+                    <a href="./register.php" class="link-dark">Register</a>
+                </div>
+                
+                <?php 
+                    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
+                        echo "<form method='POST'>";
+                        echo "<input type='submit' name='logout' id='logout' class='form-submit' value='Logout'/>";
+                        echo "</form>";
+                    }
+                ?>  
+            </div>
+        </div>
+    </div>
 </body>
 </html>

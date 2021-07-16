@@ -15,7 +15,7 @@
 
         }
         else {
-        echo  $conn->error;
+          echo "*".$conn->error;
         }
 
         $stmt->close();
