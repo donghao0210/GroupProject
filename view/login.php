@@ -1,7 +1,9 @@
 <?php
-    session_start();        // starting session
+
+include './nav_bar.php';
+
     $msg = "";
-    require_once '../controllers/userController.php';
+
 
     if(isset($_POST["login"])) {
         if(!isset($_POST["email"]) || !isset($_POST["password"])) {     // if $_POST["email"] or $_POST["password"] is not existed
