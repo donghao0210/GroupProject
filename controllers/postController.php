@@ -130,7 +130,7 @@
                     }
                     
                 }else{
-                    echo "</form>";
+                    echo "</form></div><br />";
                 }
                                     
             }
