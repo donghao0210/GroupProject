@@ -25,11 +25,6 @@
             return;
         }
 
-        $errorMsg = userRegister($email, $name, $password, $datetime);
-
-        if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
-            echo "Email :: ".$_SESSION["email"]."<br />";
-            echo "Name :: ".$_SESSION["name"]."<br />";
-        }
+        $msg = userRegister($email, $name, $password, $datetime);
     }
 ?>

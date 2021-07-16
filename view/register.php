@@ -41,7 +41,7 @@
 
             var postData = `&name=${name}&email=${email}&password=${password}`;
 
-            xmlhttp.open("POST", "../controllers/registerController.php", true);
+            xmlhttp.open("POST", "../controllers/registerValidation.php", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xmlhttp.send(postData);
         }
