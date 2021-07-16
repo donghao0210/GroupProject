@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
-  session_start();        // starting session
+    session_start();        // starting session
+    require_once '../controllers/postController.php';
+    require_once '../controllers/commentController.php';
 ?>
 <html lang="en">
   <head>
@@ -13,12 +15,10 @@
       integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
       crossorigin="anonymous"
     />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
     <link rel="icon" href="./style/images/GPTalk.png">
     <link rel="stylesheet" href="./style/style.css" />
-
-    <?php
-      require_once '../controllers/postController.php';
-    ?>
     <script>
     </script>
   </head>
@@ -91,35 +91,42 @@
 
       </div>
     </form>
+          </form>
+            <?php
+              if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                if(isset($_POST['post_content']) && isset($_POST['content'])){
+                    $content = $_POST['content'];
+                    $user_id = $_SESSION["user_id"];
+                    addPost($user_id, $content);
+                }
+              }else if(!isset($_SESSION['loggedin'])){
+                if(isset($_POST['post_content'])){
+                  echo '<script language="javascript">window.location.href ="'.'../view/login.php'.'"</script>';
+                }
+              }
 
-      <?php
-        if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-          if(isset($_POST['post_content']) && isset($_POST['content'])){
-            if(empty(trim($_POST['content']))){
-              echo '<script>alert("Cannot Post Emtpy Thoughs :(")</script>';
-            }else{
-              $content = $_POST['content'];
-              $user_id = $_SESSION["user_id"];
-              addPost($user_id, $content);
-            }
-          }
-        }
-        else if(!isset($_SESSION['loggedin'])){
-          if(isset($_POST['post_content'])){
-            echo '<script language="javascript">window.location.href ="'.'../view/login.php'.'"</script>';
-          }
-        }
+              //Delete Comment
+              // if(isset($_POST['delete_comment'])){
+              //   $post_id = $_POST['post_id'];
+              //   $creator_id = $_POST['creator_id'];
+              //   removePost($post_id, $creator_id);
+              // }
 
-        //delete post
-        if(isset($_POST['delete_post'])){
-          $post_id = $_POST['post_id'];
-          $creator_id = $_POST['creator_id'];
-          removePost($post_id, $creator_id);
-        }
+              //delete post
+              if(isset($_POST['delete_post'])){
+                $post_id = $_POST['post_id'];
+                $creator_id = $_POST['creator_id'];
+                removePost($post_id, $creator_id);
+              }
 
-        //showPost
-        showPost();
-      ?>
+              //showPost
+              showPost();
+
+              //show comment
+              $comment = getComment();
+              // print_r($comment);
+              // showComment($post_id);
+            ?>
         </div>
       </div>
     </div>
