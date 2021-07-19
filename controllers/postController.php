@@ -98,28 +98,42 @@
                 <div class=".'card mb-3'.">
                 <div class=".'card-body'.">
                     <h5 class=".'card-title'.">".$user_name."</h5>
-                    <p class=".'card-text'.">".$content."</p>
                     <p class=".'card-text'."><small class=".'text-muted'.">".$created_at."</small></p>
+                    <p class=".'card-text'.">".$content."</p>
                     <input type=".'hidden'." name=".'creator_id'." id=".'creator_id'." value=".$created_by." >
                     <input type=".'hidden'." name=".'post_id'." id=".'post_id'." value=".$post_id." >
                 </div>
                 ";
 
-                showComment($post_id);
-                
                 //if user loggedin and the post is created by him/her then show him/her delete button
                 if(isset($_SESSION['user_id']) && isset($_SESSION['loggedin'])){
                     if($created_by == $_SESSION['user_id']){
-                        // $deleteBtn = "<button type=".'submit'." class=".'btn'." name=".'delete_post'." id=".'delete_post'."> Delete Post</button>
-                        // </div>";
-                        $delBtnClass = "btn bg-warning text-dark";
-                        echo "<button type=".'submit'." class=".'btn bg-warning text-dark'." name=".'delete_post'." id=".'delete_post'."> Delete Post</button>
+                        echo "
+                            <div class=".'all-padding'.">
+                                <button type=".'submit'." class=".'delete-post-button'." name=".'delete_post'." id=".'delete_post'."> Delete Post</button>
+                            </div>
                         ";
-                    }
-                    echo " <input type=".'text'." name=".'comment_cont'." id=".'comment_cont'." placeholder=".'Comment'." />    
-                    <input type=".'submit'." class=".'post_button'." name=".'comment'." id=".'comment'." value='Comment'>
-                    </form></div>
-                    <br />";
+                    }  
+                }
+                
+                echo "
+                    <div class=".'all-padding'.">
+                        <p class=".'card-text'.">Comment</p>
+                    </div>
+                ";
+
+                showComment($post_id);
+
+                if(isset($_SESSION['user_id']) && isset($_SESSION['loggedin'])){
+                    echo " 
+                        <div class=".'all-padding'.">
+                            <div class=".'input-group'.">
+                                <input type=".'text'." class=".'form-control'." name=".'comment_cont'." id=".'comment_cont'." placeholder=".'Comment'." />    
+                                <input type=".'submit'." class=".'comment-button'." name=".'comment'." id=".'comment'." value='Comment'>
+                            </div>
+                        </div>
+                    ";
+
                     //call add comment function
                     if(isset($_POST['comment']) && isset($_POST['comment_cont'])){
                         $user_id = $_SESSION["user_id"];
@@ -128,10 +142,9 @@
                         addComment($user_id, $post_id, $comment);
                         unset($_POST['comment']);
                     }
-                    
-                }else{
-                    echo "</form></div><br />";
                 }
+
+                echo "</form></div><br />";
                                     
             }
         }

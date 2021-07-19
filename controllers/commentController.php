@@ -76,14 +76,31 @@
         if($comment["status"] == 1) {
             $commentDetail = $comment["response"];
 
+            echo "<div class=".'comment-container'.">";
             foreach($commentDetail as $c) {
                 if($c["post_id"] == $post_id) {
-                    echo "Comment Id: ".$c["comment_id"]."</br>";
-                    echo "Comment Username: ".$c["name"]."</br>";
-                    echo "Comment Content: ".$c["content"]."</br>";
-                    echo "Comment Created_at: ".$c["created_at"]."</br>";
+                    echo "
+                        <form method='post'>
+                            <div class=".'comment-card'.">
+                                <div class=".'comment-card-body'.">
+                                    <h5 class=".'card-title'.">".$c["name"]."</h5>
+                                    <p class=".'card-text'."><small class=".'text-muted'.">".$c["created_at"]."</small></p>
+                                    <p class=".'card-text'.">".$c["content"]."</p>
+                                </div>
+                            </div>
+                    ";
+
+                    //if user loggedin and the post is created by him/her then show him/her delete button
+                    if(isset($_SESSION['user_id']) && isset($_SESSION['loggedin'])){
+                        if($c["created_by"] == $_SESSION['user_id']){
+                            echo "
+                                <button type=".'submit'." class=".'delete-comment-button'." name=".'delete_comment'." id=".'delete_post'."> Delete Comment</button>
+                            ";
+                        }  
+                    }
                 }
             }
+            echo "</form></div>";
         }
 
         else {

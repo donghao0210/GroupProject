@@ -3,3 +3,61 @@ body {
     padding: 0;
     font-family: sans-serif;
 }
+
+.card-body {
+    padding: 2%;
+}
+
+.all-padding {
+    padding-top: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 1%;
+}
+
+.all-padding p{
+    padding: 1% .5% .5% 1%;
+    text-align: center;
+    background-color: #f2f2f2;
+    border-top: 1px #6c757d solid;
+    border-bottom: 1px #6c757d solid;
+}
+
+.delete-post-button {
+    color: #ffffff;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    background-color: #6c757d;
+    padding: 8px 16px;
+    width: 100%;
+}
+
+.comment-container {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 1%;
+}
+
+.comment-card {
+    margin-top: .5em;
+    border-radius: 8px;
+    background-color: #eeeeee;
+    padding: 2% 1.5% 1.5% 2%;
+}
+
+.comment-button {
+    color: #ffffff;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    background-color: #6c757d;
+    padding: 8px 16px;
+}
+
+.delete-comment-button {
+    color: #ffffff;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    background-color: #6c757d;
+    padding: 8px 16px;
+    width: 100%;
+}
