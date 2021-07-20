@@ -119,16 +119,13 @@
                                 <input type=".'hidden'." name=".'comment_by'." id=".'comment_by'." value=".$c["created_by"]." >
                                 <input type=".'hidden'." name=".'comment_id'." id=".'comment_id'." value=".$c["comment_id"]." >
                                 <button type=".'submit'." class=".'delete-comment-button'." name=".'delete_comment'." id=".'delete_comment'."> Delete Comment</button>
-                            ";
+                                </form>
+                                ";
                         }  
                     }
-
-                    // if(isset($_POST["delete_comment"])) {
-                    //     removeComment($_POST["comment_id"], $_POST["comment_by"], $_POST["post_id"]);
-                    // }
                 }
             }
-            echo "</form></div>";
+            echo "</div>";
         }
 
         else {

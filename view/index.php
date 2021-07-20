@@ -61,6 +61,7 @@
           //showPost
           showPost();
 
+          //delete comment
           if(isset($_POST["delete_comment"])) {
             removeComment($_POST["comment_id"], $_POST["comment_by"], $_POST["post_id"]);
           }
