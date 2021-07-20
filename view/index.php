@@ -8,7 +8,13 @@
     <title>GP Talk || Social Media</title>
     <link rel="icon" href="./style/images/GPTalk.png">
     <link rel="stylesheet" href="./style/index.css" />
-    <script>
+    <script type="text/javascript">
+      function count()
+      {
+        var total=document.getElementById("content").value;
+        total=total.replace(/\s/g, '');
+        document.getElementById("total").innerHTML="Total Characters:"+total.length;
+      }
     </script>
   </head>
 
@@ -29,9 +35,12 @@
         ?>
         <div class="px-5 pt-3 input-group mb-3">
           <img class="input-group-text" src="./style/images/profile.png" alt="profile" />
-          <input class="form-control" type="text" name="content" placeholder="What's on your mind?<?php if(isset($_SESSION['loggedin'])){echo ', '.$_SESSION['name'];}?>"  <?php echo $readonly;?> />
+          <input class="form-control" type="text" id="content"  onkeyup="count();" name="content" placeholder="What's on your mind?<?php if(isset($_SESSION['loggedin'])){echo ', '.$_SESSION['name'];}?>"  <?php echo $readonly;?> />
           <div class="post_divider"><hr /></div>
           <button type="submit" name="post_content" id="post_content" class="btn btn-lg btn-secondary"><?php echo $post_btn;?></button>
+          <div  class="input-group">
+            <p id="total">Total Characters:0</p><p>&nbsp;/ 225</p>
+          </div>
         </div>
         <hr />
         </form>
