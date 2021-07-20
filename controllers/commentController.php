@@ -45,6 +45,27 @@
         $conn->close();
     }
 
+    function removeAllComment($post_id){
+        $conn = connectDatabase();     // connect to database
+        $errorMsg = "";
+        //connect db
+        $sql = "DELETE FROM comment WHERE post_id = ?;";
+        //prepare db
+        $stmt = $conn->prepare($sql);
+        //assign my data into 1 integer
+        $stmt->bind_param("i", $post_id);
+        if($stmt->execute()) {
+            // echo '<script>alert("All Comment Deleted!")</script>';
+        }
+        else {
+        $errorMsg = $conn->error;
+        }
+        echo "<div class='text-danger'>".$errorMsg."</div>";
+        
+        $stmt->close();
+        $conn->close();
+    }
+
 
     function getComment(){
         $conn = connectDatabase();// connect to database

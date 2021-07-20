@@ -26,14 +26,11 @@
     }
 
     function removePost($post_id, $user_id){
+        // removeAllComment($post_id);
         $conn = connectDatabase();     // connect to database
         $errorMsg = "";
         //connect db
-
-        $sql = "DELETE p.*, c.* FROM post p
-        INNER JOIN `comment` c
-        WHERE p.post_id AND c.post_id = ? 
-        AND p.created_by = ?;";
+        $sql = "DELETE FROM post WHERE post_id =? AND created_by = ?";
 
         //prepare db
         $stmt = $conn->prepare($sql);
