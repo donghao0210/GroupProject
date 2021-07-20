@@ -94,10 +94,16 @@
                     if(isset($_SESSION['user_id']) && isset($_SESSION['loggedin'])){
                         if($c["created_by"] == $_SESSION['user_id']){
                             echo "
-                                <button type=".'submit'." class=".'delete-comment-button'." name=".'delete_comment'." id=".'delete_post'."> Delete Comment</button>
+                                <input type=".'hidden'." name=".'comment_by'." id=".'comment_by'." value=".$c["created_by"]." >
+                                <input type=".'hidden'." name=".'comment_id'." id=".'comment_id'." value=".$c["comment_id"]." >
+                                <button type=".'submit'." class=".'delete-comment-button'." name=".'delete_comment'." id=".'delete_comment'."> Delete Comment</button>
                             ";
                         }  
                     }
+
+                    // if(isset($_POST["delete_comment"])) {
+                    //     removeComment($_POST["comment_id"], $_POST["comment_by"], $_POST["post_id"]);
+                    // }
                 }
             }
             echo "</form></div>";

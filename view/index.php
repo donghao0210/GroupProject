@@ -60,8 +60,9 @@
           //showPost
           showPost();
 
-          //show comment
-          $comment = getComment();
+          if(isset($_POST["delete_comment"])) {
+            removeComment($_POST["comment_id"], $_POST["comment_by"], $_POST["post_id"]);
+          }
 
         ?>
   </body>
