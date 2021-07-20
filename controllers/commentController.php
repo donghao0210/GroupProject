@@ -118,12 +118,14 @@
                             echo "
                                 <input type=".'hidden'." name=".'comment_by'." id=".'comment_by'." value=".$c["created_by"]." >
                                 <input type=".'hidden'." name=".'comment_id'." id=".'comment_id'." value=".$c["comment_id"]." >
+                                <input type=".'hidden'." name=".'post_id'." id=".'post_id'." value=".$c["post_id"]." >
                                 <button type=".'submit'." class=".'delete-comment-button'." name=".'delete_comment'." id=".'delete_comment'."> Delete Comment</button>
-                                </form>
                                 ";
                         }  
                     }
                 }
+            echo "</form>";
+
             }
             echo "</div>";
         }

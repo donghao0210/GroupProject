@@ -61,8 +61,10 @@
           //showPost
           showPost();
 
+
           //delete comment
           if(isset($_POST["delete_comment"])) {
+              //  echo '<script>alert("'.$_POST["delete_comment"].'."is deleted")</script>';
             removeComment($_POST["comment_id"], $_POST["comment_by"], $_POST["post_id"]);
           }
 
