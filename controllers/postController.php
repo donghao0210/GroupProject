@@ -138,8 +138,10 @@
                         $comment = $_POST['comment_cont'];
                         addComment($user_id, $post_id, $comment);
                         unset($_POST['comment']);
+                        echo '<script language="javascript">window.location.href ="'.'../view/index.php'.'"</script>';
                     }
                 }
+                
 
                 echo "</form></div><br />";
                                     
