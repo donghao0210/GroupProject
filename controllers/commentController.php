@@ -35,6 +35,7 @@
         $stmt->bind_param("iii", $comment_id, $user_id, $post_id);
         if($stmt->execute()) {
             echo '<script>alert("Comment Deleted!")</script>';
+            echo '<script language="javascript">window.location.href ="'.'../view/index.php'.'"</script>';
         }
         else {
         $errorMsg = $conn->error;
