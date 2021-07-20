@@ -54,6 +54,7 @@
           if(isset($_POST['delete_post'])){
             $post_id = $_POST['post_id'];
             $creator_id = $_POST['creator_id'];
+            removeAllComment($post_id);
             removePost($post_id, $creator_id);
           }
 
