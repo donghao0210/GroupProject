@@ -125,7 +125,7 @@
                     echo " 
                         <div class=".'all-padding'.">
                             <div class=".'input-group'.">
-                                <input type=".'text'." class=".'form-control'." name=".'comment_cont'." id=".'comment_cont'." placeholder=".'Comment'." />    
+                                <input type=".'text'." maxlength=".'255'." class=".'form-control'." name=".'comment_cont'." id=".'comment_cont'." placeholder=".'Comment'." />    
                                 <input type=".'submit'." class=".'comment-button'." name=".'comment'." id=".'comment'." value='Comment'>
                             </div>
                         </div>
