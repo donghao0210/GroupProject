@@ -1,6 +1,6 @@
 <?php
 
-include './nav_bar.php';
+include './nav_bar.php'; //navbar 
 
     $msg = "";
 
@@ -14,12 +14,12 @@ include './nav_bar.php';
         $email = $_POST["email"];       // assign user input email into $email
         $password = $_POST["password"]; // assign user input password into $password
 
-        if($email == "" || $password == "") {      // if $email or $password is empty
+        if($email == "" || $password == "") {      // if $email or $password is empty will pop up warning message
             $msg = "All Field is Mandatory";
             return;
         }
 
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {  // if $email is invalid format will pop up warning message
             $msg = "Invalid email format";
             return;
         }
@@ -27,7 +27,7 @@ include './nav_bar.php';
         $msg = userLogin($email, $password);
     }
 
-    if(isset($_POST["logout"])) {
+    if(isset($_POST["logout"])) { //logout
         $msg = userLogout();
     }
 ?>
@@ -82,11 +82,11 @@ include './nav_bar.php';
                 
                 <div class="mt-5">
                     Do not have an account?&nbsp
-                    <a href="./register.php" class="link-dark">Register</a>
+                    <a href="./register.php" class="link-dark">Register</a> <!-- register page, allow user to register acc to access the web -->
                 </div>
                 
                 <?php 
-                    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
+                    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ // after login the navbar on index will change to log out 
                         echo "<form method='POST'>";
                         echo "<input type='submit' name='logout' id='logout' class='form-submit' value='Logout'/>";
                         echo "</form>";

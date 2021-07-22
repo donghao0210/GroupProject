@@ -16,8 +16,9 @@
 
     <!-- icon -->
     <link rel="icon" href="./style/images/GPTalk.png">
+    <!-- icon -->
     <script>
-        function registerFunction() {
+        function registerFunction() { 
             var errorMsg = document.getElementById("errorMsg")
             var name = document.getElementById("name").value
             var email = document.getElementById("email").value
@@ -64,7 +65,7 @@
                     </div>
                     <div class="mt-5">
                         Already a member?&nbsp
-                    <a href="./login.php" class="link-dark">Login</a>
+                    <a href="./login.php" class="link-dark">Login</a> <!-- after register will automatically direct to login and allow user to login with acc that user already registered -->
                 </div>
                 </form>
             </div>
