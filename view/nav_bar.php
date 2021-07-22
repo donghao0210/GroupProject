@@ -41,13 +41,12 @@
                         <button class=".' btn btn-outline-secondary'." name=".'sign_in'." type=".'submit'.">Sign-in</button>
                     </li> ";
             //if user is login show logout button
-            }else if(isset($_SESSION['loggedin'])){
-              if($_SESSION['loggedin']==true){
+            }else if($_SESSION['loggedin']==true){
                 echo "<li class=".'nav-item'.">
                         <button class=".' btn btn-outline-secondary'." name=".'sign_out'." type=".'submit'.">Log-Out</button>
                     </li> ";
               }
-            }
+            
           ?>
       </ul>
     </div>
