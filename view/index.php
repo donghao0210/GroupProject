@@ -38,7 +38,7 @@
           <input class="form-control" type="text" id="content"  onkeyup="count();" name="content" placeholder="What's on your mind?<?php if(isset($_SESSION['loggedin'])){echo ', '.$_SESSION['name'];}?>"  <?php echo $readonly;?> />
           <div class="post_divider"><hr /></div>
           <button type="submit" name="post_content" id="post_content" class="btn btn-lg btn-secondary"><?php echo $post_btn;?></button>
-          <div  class="input-group">
+          <div class="input-group mt-3 text-end">
             <p id="total">Total Characters:0</p><p>&nbsp;/ 225</p>
           </div>
         </div>
