@@ -35,7 +35,7 @@
         ?>
         <div class="px-5 pt-3 input-group mb-3">
           <img class="input-group-text" src="./style/images/profile.png" alt="profile" />
-          <input class="form-control" type="text" id="content"  onkeyup="count();" name="content" placeholder="What's on your mind?<?php if(isset($_SESSION['loggedin'])){echo ', '.$_SESSION['name'];}?>"  <?php echo $readonly;?> />
+          <input class="form-control" maxlength="255" type="text" id="content"  onkeyup="count();" name="content" placeholder="What's on your mind?<?php if(isset($_SESSION['loggedin'])){echo ', '.$_SESSION['name'];}?>"  <?php echo $readonly;?> />
           <div class="post_divider"><hr /></div>
           <button type="submit" name="post_content" id="post_content" class="btn btn-lg btn-secondary"><?php echo $post_btn;?></button>
           <div class="input-group mt-3 text-end">
