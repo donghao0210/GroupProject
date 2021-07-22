@@ -70,6 +70,7 @@ include './nav_bar.php'; //navbar
 
                     <p id="errorMsg">
                         <?php
+                        //echo errorMsg
                             if(!empty($msg)) {
                                 echo $msg;
                             }
