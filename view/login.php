@@ -70,6 +70,7 @@ include './nav_bar.php';
 
                     <p id="errorMsg">
                         <?php
+                        //echo errorMsg
                             if(!empty($msg)) {
                                 echo $msg;
                             }
@@ -86,6 +87,7 @@ include './nav_bar.php';
                 </div>
                 
                 <?php 
+                    //if user loggedin show logout button
                     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
                         echo "<form method='POST'>";
                         echo "<input type='submit' name='logout' id='logout' class='form-submit' value='Logout'/>";
