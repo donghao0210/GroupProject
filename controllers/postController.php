@@ -15,7 +15,13 @@
         //assign my data into 1 integer 1 strings
         $stmt->bind_param("is", $user_id, $content);
         if($stmt->execute()) {
-            echo '<script>alert("Posted!")</script>';
+            if(strlen($content) > 255){
+                echo '<script>alert("Posted! Content exceeded 255 characters. Only first 255 characters will be recorded")</script>';
+            }
+
+            else {
+                echo '<script>alert("Posted!")</script>';
+            }
         }
         else {
         $errorMsg = $conn->error;
@@ -89,7 +95,7 @@
                 $user_name = $p['name'];
                 $content = $p['content'];
                 $created_at = $p['created_at'];
-                //echo post
+
                 echo "
                 <form method='post' class=".' px-5 pt-3'.">
                 <div class=".'card mb-3'.">

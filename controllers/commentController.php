@@ -12,7 +12,13 @@
         $stmt = $conn->prepare($sql);         // prepare sql query statement
         $stmt->bind_param("iis", $user_id, $post_id, $comment);    // bind the user input into the sql command and assign into $stmt
         if($stmt->execute()) {    // if $smt is successfully executed
-            echo '<script>alert("Comment Posted!")</script>';
+            if(strlen($comment) > 150){
+                echo '<script>alert("Posted! Content exceeded 150 characters. Only first 150 characters will be recorded")</script>';
+            }
+
+            else {
+                echo '<script>alert("Posted!")</script>';
+            }
         }
         else {    // if $smt is not executed
             $errorMsg = $conn->error;
