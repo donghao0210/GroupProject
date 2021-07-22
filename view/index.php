@@ -39,7 +39,7 @@
           <div class="post_divider"><hr /></div>
           <button type="submit" name="post_content" id="post_content" class="btn btn-lg btn-secondary"><?php echo $post_btn;?></button>
           <div class="input-group mt-3 text-end">
-            <p id="total">Total Characters:0</p><p>&nbsp;/ 225</p>
+            <p id="total">Total Characters:0</p><p>&nbsp;/ 255</p>
           </div>
         </div>
         <hr />
