@@ -54,7 +54,7 @@
                 addPost($user_id, $content);
             }
           }
-          else if(!isset($_SESSION['loggedin'])){ 
+          else{
             if(isset($_POST['post_content'])){
               echo '<script language="javascript">window.location.href ="'.'../view/login.php'.'"</script>';
             }
