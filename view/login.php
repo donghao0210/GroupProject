@@ -1,6 +1,6 @@
 <?php
 
-include './nav_bar.php';
+include './nav_bar.php'; //navbar 
 
     $msg = "";
 
@@ -14,12 +14,12 @@ include './nav_bar.php';
         $email = $_POST["email"];       // assign user input email into $email
         $password = $_POST["password"]; // assign user input password into $password
 
-        if($email == "" || $password == "") {      // if $email or $password is empty
+        if($email == "" || $password == "") {      // if $email or $password is empty will pop up warning message
             $msg = "All Field is Mandatory";
             return;
         }
 
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {  // if $email is invalid format will pop up warning message
             $msg = "Invalid email format";
             return;
         }
@@ -27,7 +27,7 @@ include './nav_bar.php';
         $msg = userLogin($email, $password);
     }
 
-    if(isset($_POST["logout"])) {
+    if(isset($_POST["logout"])) { //logout
         $msg = userLogout();
     }
 ?>
@@ -70,6 +70,7 @@ include './nav_bar.php';
 
                     <p id="errorMsg">
                         <?php
+                        //echo errorMsg
                             if(!empty($msg)) {
                                 echo $msg;
                             }

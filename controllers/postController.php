@@ -2,6 +2,7 @@
     require_once 'db.php';
     require_once '../controllers/commentController.php';
 
+//add post function
     function addPost($user_id, $content){
         $conn = connectDatabase();     // connect to database
         $errorMsg = "";
@@ -24,7 +25,7 @@
         $stmt->close();
         $conn->close();
     }
-
+    //removePost function
     function removePost($post_id, $user_id){
         // removeAllComment($post_id);
         $conn = connectDatabase();     // connect to database
@@ -47,7 +48,7 @@
         $stmt->close();
         $conn->close();
     }
-
+    //getPost function
     function getPost() {
         $errorMsg = "";
         $output = array();
@@ -74,15 +75,14 @@
         $conn->close();
         return array("status"=>1, "response"=>$output);
     }
-
+    //showPost function
     function showPost(){
         $errorMsg = "";
         $post = getPost();
 
         if($post["status"] == 1) {
             $postDetail = $post["response"];
-            // print_r($postDetail);
-
+            //loop the bd respone and submit then show to user
             foreach($postDetail as $p) {
                 $post_id = $p['post_id'];
                 $created_by = $p['created_by'];
@@ -118,9 +118,9 @@
                         <p class=".'card-text'.">Comment</p>
                     </div>
                 ";
-
+                //show the comment under the post
                 showComment($post_id);
-
+                //if user is loggedin show comment button
                 if(isset($_SESSION['user_id']) && isset($_SESSION['loggedin'])){
                     echo " 
                         <div class=".'all-padding'.">
@@ -136,13 +136,15 @@
                         $user_id = $_SESSION["user_id"];
                         $post_id = $_POST['post_id'];
                         $comment = $_POST['comment_cont'];
+                        //submit the variable into the addComment function
                         addComment($user_id, $post_id, $comment);
+                        //unset the 
                         unset($_POST['comment']);
                         echo '<script language="javascript">window.location.href ="'.'../view/index.php'.'"</script>';
                     }
                 }
                 
-
+                //close the form and div
                 echo "</form></div><br />";
                                     
             }
