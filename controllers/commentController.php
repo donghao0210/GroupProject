@@ -1,86 +1,83 @@
 <?php
-    require_once 'db.php';
-    require_once '../controllers/postController.php';
+    require_once 'db.php';                                  // importing dp.php into the page
+    require_once '../controllers/postController.php';       // importing postController.php into the page
 
 
-    function addComment($user_id, $post_id, $comment){
+    function addComment($user_id, $post_id, $comment){      // add comment function
         $conn = connectDatabase();     // connect to database
-        $errorMsg = "";
-        //connect db
-        $sql = "INSERT INTO comment (`created_by`, `post_id`, `content`) VALUES ( ?, ?, ?);";
-        //prepare db
-        $stmt = $conn->prepare($sql);
-        //assign my data into 1 integer 1 strings
-        $stmt->bind_param("iis", $user_id, $post_id, $comment);
-        if($stmt->execute()) {
+        $errorMsg = "";                // initial $errorMessage
+
+        $sql = "INSERT INTO comment (`created_by`, `post_id`, `content`) VALUES (?, ?, ?);";     // sql command for inserting into `comment` table
+
+        $stmt = $conn->prepare($sql);         // prepare sql query statement
+        $stmt->bind_param("iis", $user_id, $post_id, $comment);    // bind the user input into the sql command and assign into $stmt
+        if($stmt->execute()) {    // if $smt is successfully executed
             echo '<script>alert("Comment Posted!")</script>';
         }
-        else {
-        $errorMsg = $conn->error;
+        else {    // if $smt is not executed
+            $errorMsg = $conn->error;
         }
         echo "<div class='text-danger'>".$errorMsg."</div>";
         
-        $stmt->close();
-        $conn->close();
+        $stmt->close();   // close statement
+        $conn->close();   // close database connection
     }
 
-    function removeComment($comment_id, $user_id, $post_id){
+    function removeComment($comment_id, $user_id, $post_id){        // remove comment function
         $conn = connectDatabase();     // connect to database
         $errorMsg = "";
-        //connect db
-        $sql = "DELETE FROM comment WHERE comment_id = ? AND created_by = ? AND post_id = ?;";
-        //prepare db
-        $stmt = $conn->prepare($sql);
-        //assign my data into 1 integer
-        $stmt->bind_param("iii", $comment_id, $user_id, $post_id);
-        if($stmt->execute()) {
+
+        $sql = "DELETE FROM comment WHERE comment_id = ? AND created_by = ? AND post_id = ?;";         // sql command to delete from comment table in database
+
+        $stmt = $conn->prepare($sql);         // prepare sql query statement
+        $stmt->bind_param("iii", $comment_id, $user_id, $post_id);    // bind the data into the sql command and assign into $stmt
+        if($stmt->execute()) {    // if $smt is successfully executed
             echo '<script>alert("Comment Deleted!")</script>';
             echo '<script language="javascript">window.location.href ="'.'../view/index.php'.'"</script>';
         }
-        else {
-        $errorMsg = $conn->error;
+        else {    // if $smt is not executed
+            $errorMsg = $conn->error;
         }
         echo "<div class='text-danger'>".$errorMsg."</div>";
         
-        $stmt->close();
-        $conn->close();
+        $stmt->close();   // close statement
+        $conn->close();   // close database connection
     }
 
-    function removeAllComment($post_id){
+    function removeAllComment($post_id){        // remove all comment function
         $conn = connectDatabase();     // connect to database
         $errorMsg = "";
-        //connect db
-        $sql = "DELETE FROM comment WHERE post_id = ?;";
-        //prepare db
+
+        $sql = "DELETE FROM comment WHERE post_id = ?;";         // sql command to delete from comment table in database
         $stmt = $conn->prepare($sql);
-        //assign my data into 1 integer
+
         $stmt->bind_param("i", $post_id);
         if($stmt->execute()) {
             // echo '<script>alert("All Comment Deleted!")</script>';
         }
         else {
-        $errorMsg = $conn->error;
+            $errorMsg = $conn->error;
         }
         echo "<div class='text-danger'>".$errorMsg."</div>";
         
-        $stmt->close();
-        $conn->close();
+        $stmt->close();   // close statement
+        $conn->close();   // close database connection
     }
 
 
-    function getComment(){
+    function getComment(){      // get comment function
         $conn = connectDatabase();// connect to database
         $errorMsg = "";
         $output = array();
-        // $sql ="SELECT post_id, created_by, content, created_at FROM post ORDER BY created_at DESC;";
+
         $sql = "SELECT c.comment_id, c.post_id, c.created_by, c.content, c.created_at, u.name 
                 FROM comment c
                 INNER JOIN user u ON c.created_by = u.id
-                ORDER BY created_at DESC;";
+                ORDER BY created_at DESC;";         // sql command for selecting comment information 
         
         if($result = $conn->query($sql)) {
             while($row = $result->fetch_assoc()) {  // while loop fetching the output from the database and assign the output into $row
-                array_push($output, $row);            // add the $row into $output array
+                array_push($output, $row);          // add the $row into $output array
             }
         }
         else {    // if failed to call the sql command
@@ -88,19 +85,19 @@
             return array("status"=>0, "msg"=>"Error: ".$sql."<br />".$conn->error);   // return status as 0 and errormessage
         }
 
-        $conn->close();
-        return array("status"=>1, "response"=>$output);
+        $conn->close();   // close database connection
+        return array("status"=>1, "response"=>$output);   // return the status as 1 and response as $output
     }
 
-    function showComment($post_id) {
-        $comment = getComment();
+    function showComment($post_id) {      // show comment function
+        $comment = getComment();          // calling function get comments and assigned the return value into $comment
 
-        if($comment["status"] == 1) {
-            $commentDetail = $comment["response"];
+        if($comment["status"] == 1) {     // if status == 1
+            $commentDetail = $comment["response"];      // assign the response into $commentDetail
 
             echo "<div class=".'comment-container'.">";
-            foreach($commentDetail as $c) {
-                if($c["post_id"] == $post_id) {
+            foreach($commentDetail as $c) {             // foreach loop to print comments
+                if($c["post_id"] == $post_id) {         // if comment's post_id is same as the $post_id
                     echo "
                         <form method='post'>
                             <div class=".'comment-card'.">
@@ -124,8 +121,7 @@
                         }  
                     }
                 }
-            echo "</form>";
-
+                echo "</form>";
             }
             echo "</div>";
         }

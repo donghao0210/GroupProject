@@ -1,29 +1,29 @@
 <?php
-    require_once 'db.php';
+    require_once 'db.php';              //importing dp.php into the page
     
-    function userRegister($email, $name, $password, $datetime) {
+    function userRegister($email, $name, $password, $datetime) {      // register user function
         $conn = connectDatabase();     // connect to database
-        $sql = "INSERT INTO `user` (email, `name`, `password`, created_at) VALUES (?, ?, ?, ?);";
+        $sql = "INSERT INTO `user` (email, `name`, `password`, created_at) VALUES (?, ?, ?, ?);";     // sql command for inserting into `user` table
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $email, $name, $password, $datetime);
+        $stmt = $conn->prepare($sql);   // prepare sql query statement
+        $stmt->bind_param("ssss", $email, $name, $password, $datetime);    // bind the user input into the sql command and assign into $stmt
 
-        if($stmt->execute()) {
-        echo "<div class='text-success'>Registration Successful!</div>";
+        if($stmt->execute()) {    // if $smt is successfully executed
+        echo "<div class='text-success'>Registration Successful!</div>";    // print registration successfully
         echo "redirecting you to login page...";
-        echo "<meta http-equiv="."refresh"." content="."2.03;login.php"." /> "; 
+        echo "<meta http-equiv="."refresh"." content="."2.03;login.php"." /> ";   // redirect user to login page
 
         }
-        else {
-          echo "*".$conn->error;
+        else {    // if statement is failed to execute
+          echo "*".$conn->error;    // print the error message
         }
 
-        $stmt->close();
-        $conn->close();
+        $stmt->close();   // close sql statement
+        $conn->close();   // close database connection
 
     }
 
-    function userLogin($email, $password) {
+    function userLogin($email, $password) {   // login user function
         $conn = connectDatabase();     // connect to database
         $sql = "SELECT name, email, password, id FROM user WHERE email = ?";    // sql command to select user information from the database with user input email
     
@@ -38,11 +38,10 @@
                   $_SESSION["name"] = $name;
                   $_SESSION["email"] = $email;
                   $_SESSION["user_id"] = $user_id;
-                  echo '<script language="javascript">window.location.href ="'.'../view/index.php'.'"</script>';
+                  echo '<script language="javascript">window.location.href ="'.'../view/index.php'.'"</script>';    // redirect user to home page
 
               }
-              else {
-  //           $errorMsg = "<div class=text-danger> *Login Failed. Invalid Email/Password</div>";
+              else {     // if user input password is not the same as the password retrived from the database
                 $msg = "<div class='text-danger'> *Login Failed. Invalid Email/Password.</div>";
               }
           }
@@ -50,26 +49,26 @@
             $msg = "<div class='text-danger'> *Login Failed. Invalid Email/Password.</div>";
           }
         }
-        else {
+        else {    // if statement is failed to execute
           $msg = $conn->error;
         }
     
         $stmt->close();     // close statement
         $conn->close();     // close database connection
 
-        if(!isset($msg)) {
+        if(!isset($msg)) {    // if $msg is not exist
             $msg = "<div class='text-success'> *Login Successfully</div>";
         }
     
-        return $msg;
+        return $msg;    // return $msg
       }
 
-    function userLogout() {
-        session_destroy();
-        header("Location: login.php");
+    function userLogout() {   // logout user function
+        session_destroy();    // delete session all of the data associated with the current session 
+        header("Location: login.php");    // redirect user to login page
         $msg = "Logout Successfully";
 
-        return $msg;
+        return $msg;          // return $msg
     }
 
 ?>

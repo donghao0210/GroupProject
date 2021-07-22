@@ -83,15 +83,7 @@ include './nav_bar.php';
                 <div class="mt-5">
                     Do not have an account?&nbsp
                     <a href="./register.php" class="link-dark">Register</a>
-                </div>
-                
-                <?php 
-                    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true){ 
-                        echo "<form method='POST'>";
-                        echo "<input type='submit' name='logout' id='logout' class='form-submit' value='Logout'/>";
-                        echo "</form>";
-                    }
-                ?>  
+                </div> 
             </div>
         </div>
     </div>
