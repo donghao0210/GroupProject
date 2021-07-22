@@ -7,24 +7,25 @@ include './nav_bar.php'; //navbar
 
     if(isset($_POST["login"])) {
         if(!isset($_POST["email"]) || !isset($_POST["password"])) {     // if $_POST["email"] or $_POST["password"] is not existed
-            $msg = "Invalid Form Submission";
-            return;
+            $msg = "*Invalid Form Submission";
         }
 
-        $email = $_POST["email"];       // assign user input email into $email
-        $password = $_POST["password"]; // assign user input password into $password
-
-        if($email == "" || $password == "") {      // if $email or $password is empty will pop up warning message
-            $msg = "All Field is Mandatory";
-            return;
+        else if($_POST["email"] == "" || $_POST["password"] == ""){     // if $email or $password is empty will pop up warning message
+            $msg = "*All Field is Mandatory";
         }
 
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {  // if $email is invalid format will pop up warning message
-            $msg = "Invalid email format";
-            return;
-        }
+        else {
+            $email = $_POST["email"];       // assign user input email into $email
+            $password = $_POST["password"]; // assign user input password into $password
 
-        $msg = userLogin($email, $password);
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {  // if $email is invalid format will pop up warning message
+                $msg = "*Invalid email format";
+            }
+
+            else {
+                $msg = userLogin($email, $password);
+            }
+        }
     }
 
     if(isset($_POST["logout"])) { //logout
@@ -68,14 +69,15 @@ include './nav_bar.php'; //navbar
                         <input class="form-control" type="password" name="password" id="password" placeholder="Password" required/>
                     </div>
 
-                    <p id="errorMsg">
-                        <?php
-                        //echo errorMsg
-                            if(!empty($msg)) {
-                                echo $msg;
-                            }
-                        ?>
-                    </p>
+                    <div class='text-danger'>
+                        <p>
+                            <?php
+                                if(!empty($msg)) {
+                                    echo $msg;
+                                }
+                            ?>
+                        </p>
+                    </div>
                     <div class="form-group form-button">
                         <input type="submit" name="login" id="login" class="btn btn-outline-dark" value="Sign in"/>
                     </div>
